@@ -75,7 +75,7 @@ Before you configure a forest trust in Domain Services, make sure your networkin
 To correctly resolve the managed domain from the on-premises environment, you may need to add forwarders to the existing DNS servers. If you haven't configured the on-premises environment to communicate with the managed domain, complete the following steps from a management workstation for the on-premises AD DS domain:
 
 1. Select **Start** > **Administrative Tools** > **DNS**.
-1. Select your DNS zone, such as *aaddscontoso.com*.
+1. Select your DNS zone, such as *aadds.contoso.com*.
 1. Select **Conditional Forwarders**, then right-select and choose **New Conditional Forwarder...**
 1. Enter your other **DNS Domain**, such as *contoso.com*, then enter the IP addresses of the DNS servers for that namespace, as shown in the following example:
 
@@ -99,7 +99,7 @@ To configure inbound trust on the on-premises AD DS domain, complete the followi
 1. Select **Start** > **Administrative Tools** > **Active Directory Domains and Trusts**.
 1. Right-click the domain, such as *onprem.contoso.com*, then select **Properties**.
 1. Choose **Trusts** tab, then **New Trust**.
-1. Enter the name for Domain Services domain name, such as *aaddscontoso.com*, then select **Next**.
+1. Enter the name for Domain Services domain name, such as *aadds.contoso.com*, then select **Next**.
 1. Select the option to create a **Forest trust**, then to create a **One way: incoming** trust.
 1. Choose to create the trust for **This domain only**. In the next step, you create the trust in the Microsoft Entra admin center for the managed domain.
 1. Choose to use **Forest-wide authentication**, then enter and confirm a trust password. This same password is also entered in the Microsoft Entra admin center in the next section.
@@ -122,7 +122,7 @@ With the on-premises AD DS domain configured to resolve the managed domain and a
 
 To create the outbound trust for the managed domain in the Microsoft Entra admin center, complete the following steps:
 
-1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**, then select your managed domain, such as *aaddscontoso.com*.
+1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**, then select your managed domain, such as *aadds.contoso.com*.
 1. From the menu on the left-hand side of the managed domain, select **Trusts**, then choose to **+ Add** a trust.
 1. Enter a display name that identifies your trust, then the on-premises trusted forest DNS name, such as *onprem.contoso.com*.
 1. Provide the same trust password that was used to configure the inbound forest trust for the on-premises AD DS domain in the previous section.
@@ -133,7 +133,7 @@ To create the outbound trust for the managed domain in the Microsoft Entra admin
 
 If the forest trust is no longer needed for an environment, complete the following steps to remove it from Domain Services:
 
-1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**, then select your managed domain, such as *aaddscontoso.com*.
+1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**, then select your managed domain, such as *aadds.contoso.com*.
 1. From the menu on the left-hand side of the managed domain, select **Trusts**, choose the trust, and click **Remove**.
 1. Provide the same trust password that was used to configure the forest trust and click **OK**.
 
@@ -217,7 +217,7 @@ Using the Windows Server VM joined to the Domain Services forest, you can test t
 #### Validate cross-forest authentication to a resource
 
 1. Sign in a Windows computer joined to your on-premises Active Directory using a user account from your on-premises Active Directory.
-1. Using **Windows Explorer**, connect to the share you created using the fully qualified host name and the share such as `\\fs1.aaddscontoso.com\CrossforestShare`.
+1. Using **Windows Explorer**, connect to the share you created using the fully qualified host name and the share such as `\\fs1.aadds.contoso.com\CrossforestShare`.
 1. To validate the write permission, right-select in the folder, choose **New**, then select **Text Document**. Use the default name **New Text Document**.
 
     If the write permissions are set correctly, a new text document is created. The following steps will then open, edit, and delete the file as appropriate.

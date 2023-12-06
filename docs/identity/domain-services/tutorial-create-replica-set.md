@@ -17,7 +17,7 @@ ms.author: justinha
 
 # Tutorial: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
 
-To improve the resiliency of a Microsoft Entra Domain Services managed domain, or deploy to additional geographic locations close to your applications, you can use *replica sets*. Every Domain Services managed domain namespace, such as *aaddscontoso.com*, contains one initial replica set. The ability to create additional replica sets in other Azure regions provides geographical resiliency for a managed domain.
+To improve the resiliency of a Microsoft Entra Domain Services managed domain, or deploy to additional geographic locations close to your applications, you can use *replica sets*. Every Domain Services managed domain namespace, such as *aadds.contoso.com*, contains one initial replica set. The ability to create additional replica sets in other Azure regions provides geographical resiliency for a managed domain.
 
 You can add a replica set to any peered virtual network in any Azure region that supports Domain Services.
 
@@ -66,14 +66,14 @@ Before you can use replica sets in Domain Services, review the following Azure v
 
 ## Create a replica set
 
-When you create a managed domain, such as *aaddscontoso.com*, an initial replica set is created. Additional replica sets share the same namespace and configuration. Changes to Domain Services, including configuration, user identity and credentials, groups, group policy objects, computer objects, and other changes are applied to all replica sets in the managed domain using AD DS replication.
+When you create a managed domain, such as *aadds.contoso.com*, an initial replica set is created. Additional replica sets share the same namespace and configuration. Changes to Domain Services, including configuration, user identity and credentials, groups, group policy objects, computer objects, and other changes are applied to all replica sets in the managed domain using AD DS replication.
 
 In this tutorial, you create an additional replica set in an Azure region different than the initial Domain Services replica set.
 
 To create an additional replica set, complete the following steps:
 
 1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**.
-1. Choose your managed domain, such as *aaddscontoso.com*.
+1. Choose your managed domain, such as *aadds.contoso.com*.
 1. On the left-hand side, select **Replica sets**. Each managed domain includes one initial replica set in the selected region, as shown in the following example screenshot:
 
     ![Example screenshot to view and add a replica set in the Microsoft Entra admin center](./media/tutorial-create-replica-set/replica-set-list.png)
@@ -108,7 +108,7 @@ A managed domain is currently limited to five replicas - the initial replica set
 To delete a replica set, complete the following steps:
 
 1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**.
-1. Choose your managed domain, such as *aaddscontoso.com*.
+1. Choose your managed domain, such as *aadds.contoso.com*.
 1. On the left-hand side, select **Replica sets**. From the list of replica sets, select the **...** context menu next to the replica set you want to delete.
 1. Select **Delete** from the context menu, then confirm you want to delete the replica set.
 1. In the Domain Services management VM, access the DNS console and manually delete DNS records for the domain controllers from the deleted replica set.

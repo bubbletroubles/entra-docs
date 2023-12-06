@@ -35,7 +35,7 @@ To delete a managed domain, complete the following steps:
 
 1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as a [Global Administrator](/azure/active-directory/roles/permissions-reference#global-administrator).
 1. Search for and select **Microsoft Entra Domain Services**.
-1. Select the name of your managed domain, such as *aaddscontoso.com*.
+1. Select the name of your managed domain, such as *aadds.contoso.com*.
 1. On the **Overview** page, select **Delete**. To confirm the deletion, type the domain name of the managed domain again, then select **Delete**.
 
 It can take 15-20 minutes or more to delete the managed domain.

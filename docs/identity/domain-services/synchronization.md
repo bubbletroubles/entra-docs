@@ -58,7 +58,7 @@ The following table lists some common attributes and how they're synchronized to
 > [!TIP]
 > **Sign in to the managed domain using the UPN format** The *SAMAccountName* attribute, such as `AADDSCONTOSO\driley`, may be auto-generated for some user accounts in a managed domain. Users' auto-generated *SAMAccountName* may differ from their UPN prefix, so isn't always a reliable way to sign in.
 >
-> For example, if multiple users have the same *mailNickname* attribute or users have overly long UPN prefixes, the *SAMAccountName* for these users may be auto-generated. Use the UPN format, such as `driley@aaddscontoso.com`, to reliably sign in to a managed domain.
+> For example, if multiple users have the same *mailNickname* attribute or users have overly long UPN prefixes, the *SAMAccountName* for these users may be auto-generated. Use the UPN format, such as `driley@aadds.contoso.com`, to reliably sign in to a managed domain.
 
 ### Attribute mapping for user accounts
 

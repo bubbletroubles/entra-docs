@@ -63,7 +63,7 @@ First, create a custom OU using the [New-ADOrganizationalUnit][New-AdOrganizatio
 > [!TIP]
 > To complete these steps to create a gMSA, [use your management VM][tutorial-create-management-vm]. This management VM should already have the required AD PowerShell cmdlets and connection to the managed domain.
 
-The following example creates a custom OU named *myNewOU* in the managed domain named *aaddscontoso.com*. Use your own OU and managed domain name:
+The following example creates a custom OU named *myNewOU* in the managed domain named *aadds.contoso.com*. Use your own OU and managed domain name:
 
 ```powershell
 New-ADOrganizationalUnit -Name "myNewOU" -Path "DC=aaddscontoso,DC=COM"
@@ -73,20 +73,20 @@ Now create a gMSA using the [New-ADServiceAccount][New-ADServiceAccount] cmdlet.
 
 * **-Name** is set to *WebFarmSvc*
 * **-Path** parameter specifies the custom OU for the gMSA created in the previous step.
-* DNS entries and service principal names are set for *WebFarmSvc.aaddscontoso.com*
+* DNS entries and service principal names are set for *WebFarmSvc.aadds.contoso.com*
 * Principals in *AADDSCONTOSO-SERVER$* are allowed to retrieve the password and use the identity.
 
 Specify your own names and domain names.
 
 ```powershell
 New-ADServiceAccount -Name WebFarmSvc `
-    -DNSHostName WebFarmSvc.aaddscontoso.com `
+    -DNSHostName WebFarmSvc.aadds.contoso.com `
     -Path "OU=MYNEWOU,DC=aaddscontoso,DC=com" `
     -KerberosEncryptionType AES128, AES256 `
     -ManagedPasswordIntervalInDays 30 `
-    -ServicePrincipalNames http/WebFarmSvc.aaddscontoso.com/aaddscontoso.com, `
-        http/WebFarmSvc.aaddscontoso.com/aaddscontoso, `
-        http/WebFarmSvc/aaddscontoso.com, `
+    -ServicePrincipalNames http/WebFarmSvc.aadds.contoso.com/aadds.contoso.com, `
+        http/WebFarmSvc.aadds.contoso.com/aaddscontoso, `
+        http/WebFarmSvc/aadds.contoso.com, `
         http/WebFarmSvc/aaddscontoso `
     -PrincipalsAllowedToRetrieveManagedPassword AADDSCONTOSO-SERVER$
 ```

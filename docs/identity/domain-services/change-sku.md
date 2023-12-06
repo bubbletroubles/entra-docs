@@ -46,7 +46,7 @@ For more information on these limits, see [Domain Services SKU features and limi
 
 To change the SKU for a managed domain using the [Microsoft Entra admin center](https://entra.microsoft.com), complete the following steps:
 
-1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain from the list, such as *aaddscontoso.com*.
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain from the list, such as *aadds.contoso.com*.
 1. In the menu on the left-hand side of the Domain Services page, select **Settings > SKU**.
 
     ![Select the SKU menu option for your Domain Services managed domain in the Microsoft Entra admin center](media/change-sku/overview-change-sku.png)

@@ -193,7 +193,7 @@ $vnet | Set-AzVirtualNetwork
 
 ## Create a managed domain
 
-Now let's create a managed domain. Set your Azure subscription ID, and then provide a name for the managed domain, such as *aaddscontoso.com*. You can get your subscription ID using the [Get-AzSubscription][Get-AzSubscription] cmdlet.
+Now let's create a managed domain. Set your Azure subscription ID, and then provide a name for the managed domain, such as *aadds.contoso.com*. You can get your subscription ID using the [Get-AzSubscription][Get-AzSubscription] cmdlet.
 
 If you choose a region that supports Availability Zones, the Domain Services resources are distributed across zones for redundancy.
 
@@ -203,7 +203,7 @@ There's nothing for you to configure for Domain Services to be distributed acros
 
 ```azurepowershell-interactive
 $AzureSubscriptionId = "YOUR_AZURE_SUBSCRIPTION_ID"
-$ManagedDomainName = "aaddscontoso.com"
+$ManagedDomainName = "aadds.contoso.com"
 
 # Enable Azure AD Domain Services for the directory.
 $replicaSetParams = @{
@@ -243,7 +243,7 @@ $ResourceGroupName = "myResourceGroup"
 $VnetName = "myVnet"
 $AzureLocation = "westus"
 $AzureSubscriptionId = "YOUR_AZURE_SUBSCRIPTION_ID"
-$ManagedDomainName = "aaddscontoso.com"
+$ManagedDomainName = "aadds.contoso.com"
 
 # Connect to your Azure AD directory.
 Connect-AzureAD

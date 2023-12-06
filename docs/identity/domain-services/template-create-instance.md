@@ -43,15 +43,15 @@ When you create a Domain Services managed domain, you specify a DNS name. There 
 > [!TIP]
 > If you create a custom domain name, take care with existing DNS namespaces. It's recommended to use a domain name separate from any existing Azure or on-premises DNS name space.
 >
-> For example, if you have an existing DNS name space of *contoso.com*, create a managed domain with the custom domain name of *aaddscontoso.com*. If you need to use secure LDAP, you must register and own this custom domain name to generate the required certificates.
+> For example, if you have an existing DNS name space of *contoso.com*, create a managed domain with the custom domain name of *aadds.contoso.com*. If you need to use secure LDAP, you must register and own this custom domain name to generate the required certificates.
 >
 > You may need to create some additional DNS records for other services in your environment, or conditional DNS forwarders between existing DNS name spaces in your environment. For example, if you run a webserver that hosts a site using the root DNS name, there can be naming conflicts that require additional DNS entries.
 >
-> In this sample and how-to articles, the custom domain of *aaddscontoso.com* is used as a short example. In all commands, specify your own domain name.
+> In this sample and how-to articles, the custom domain of *aadds.contoso.com* is used as a short example. In all commands, specify your own domain name.
 
 The following DNS name restrictions also apply:
 
-* **Domain prefix restrictions:** You can't create a managed domain with a prefix longer than 15 characters. The prefix of your specified domain name (such as *aaddscontoso* in the *aaddscontoso.com* domain name) must contain 15 or fewer characters.
+* **Domain prefix restrictions:** You can't create a managed domain with a prefix longer than 15 characters. The prefix of your specified domain name (such as *aaddscontoso* in the *aadds.contoso.com* domain name) must contain 15 or fewer characters.
 * **Network name conflicts:** The DNS domain name for your managed domain shouldn't already exist in the virtual network. Specifically, check for the following scenarios that would lead to a name conflict:
     * If you already have an Active Directory domain with the same DNS domain name on the Azure virtual network.
     * If the virtual network where you plan to enable the managed domain has a VPN connection with your on-premises network. In this scenario, ensure you don't have a domain with the same DNS domain name on your on-premises network.
@@ -128,12 +128,12 @@ As part of the Resource Manager resource definition, the following configuration
 | notificationSettings    | If there are any alerts generated in the managed domain, email notifications can be sent out. <br /><br />*Global administrators* of the Azure tenant and members of the *AAD DC Administrators* group can be *Enabled* for these notifications.<br /><br /> If desired, you can add additional recipients for notifications when there are alerts that require attention.|
 | domainConfigurationType | By default, a managed domain is created as a *User* forest. This type of forest synchronizes all objects from Microsoft Entra ID, including any user accounts created in an on-premises AD DS environment. You don't need to specify a *domainConfiguration* value to create a user forest.<br /><br /> A *Resource* forest only synchronizes users and groups created directly in Microsoft Entra ID. Set the value to *ResourceTrusting* to create a resource forest.<br /><br />For more information on *Resource* forests, including why you may use one and how to create forest trusts with on-premises AD DS domains, see [Domain Services resource forests overview][resource-forests].|
 
-The following condensed parameters definition shows how these values are declared. A user forest named *aaddscontoso.com* is created with all users from Azure AD synchronized to the managed domain:
+The following condensed parameters definition shows how these values are declared. A user forest named *aadds.contoso.com* is created with all users from Azure AD synchronized to the managed domain:
 
 ```json
 "parameters": {
     "domainName": {
-        "value": "aaddscontoso.com"
+        "value": "aadds.contoso.com"
     },
     "filteredSync": {
         "value": "Disabled"
@@ -176,7 +176,7 @@ These parameters and resource type can be used as part of a wider Resource Manag
 
 ## Create a managed domain using sample template
 
-The following complete Resource Manager sample template creates a managed domain and the supporting virtual network, subnet, and network security group rules. The network security group rules are required to secure the managed domain and make sure traffic can flow correctly. A user forest with the DNS name of *aaddscontoso.com* is created, with all users synchronized from Microsoft Entra ID:
+The following complete Resource Manager sample template creates a managed domain and the supporting virtual network, subnet, and network security group rules. The network security group rules are required to secure the managed domain and make sure traffic can flow correctly. A user forest with the DNS name of *aadds.contoso.com* is created, with all users synchronized from Microsoft Entra ID:
 
 ```json
 {
@@ -190,7 +190,7 @@ The following complete Resource Manager sample template creates a managed domain
             "value": "FullySynced"
         },
         "domainName": {
-            "value": "aaddscontoso.com"
+            "value": "aadds.contoso.com"
         },
         "filteredSync": {
             "value": "Disabled"

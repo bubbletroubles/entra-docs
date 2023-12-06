@@ -44,7 +44,7 @@ To enable Domain Services security audit events using the Microsoft Entra admin 
 > Domain Services security audits aren't retroactive. You can't retrieve or replay events from the past. Domain Services can only send events that occur after security audits are enabled.
 
 1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as a Global Administrator.
-1. Search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aaddscontoso.com*.
+1. Search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aadds.contoso.com*.
 1. In the Domain Services window, select **Diagnostic settings** on the left-hand side.
 1. No diagnostics are configured by default. To get started, select **Add diagnostic setting**.
 

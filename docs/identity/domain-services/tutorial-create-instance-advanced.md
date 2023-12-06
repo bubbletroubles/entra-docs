@@ -69,15 +69,15 @@ When you create a managed domain, you specify a DNS name. There are some conside
 > [!TIP]
 > If you create a custom domain name, take care with existing DNS namespaces. It's recommended to use a domain name separate from any existing Azure or on-premises DNS name space.
 >
-> For example, if you have an existing DNS name space of *contoso.com*, create a managed domain with the custom domain name of *aaddscontoso.com*. If you need to use secure LDAP, you must register and own this custom domain name to generate the required certificates.
+> For example, if you have an existing DNS name space of *contoso.com*, create a managed domain with the custom domain name of *aadds.contoso.com*. If you need to use secure LDAP, you must register and own this custom domain name to generate the required certificates.
 >
 > You may need to create some additional DNS records for other services in your environment, or conditional DNS forwarders between existing DNS name spaces in your environment. For example, if you run a webserver that hosts a site using the root DNS name, there can be naming conflicts that require additional DNS entries.
 >
-> In these tutorials and how-to articles, the custom domain of *aaddscontoso.com* is used as a short example. In all commands, specify your own domain name.
+> In these tutorials and how-to articles, the custom domain of *aadds.contoso.com* is used as a short example. In all commands, specify your own domain name.
 
 The following DNS name restrictions also apply:
 
-* **Domain prefix restrictions:** You can't create a managed domain with a prefix longer than 15 characters. The prefix of your specified domain name (such as *aaddscontoso* in the *aaddscontoso.com* domain name) must contain 15 or fewer characters.
+* **Domain prefix restrictions:** You can't create a managed domain with a prefix longer than 15 characters. The prefix of your specified domain name (such as *aaddscontoso* in the *aadds.contoso.com* domain name) must contain 15 or fewer characters.
 * **Network name conflicts:** The DNS domain name for your managed domain shouldn't already exist in the virtual network. Specifically, check for the following scenarios that would lead to a name conflict:
     * If you already have an Active Directory domain with the same DNS domain name on the Azure virtual network.
     * If the virtual network where you plan to enable the managed domain has a VPN connection with your on-premises network. In this scenario, ensure you don't have a domain with the same DNS domain name on your on-premises network.
@@ -169,7 +169,7 @@ On the **Summary** page of the wizard, review the configuration settings for you
 
     ![Notification in the Microsoft Entra admin center of the deployment in progress](./media/tutorial-create-instance-advanced/deployment-in-progress.png)
 
-1. Select your resource group, such as *myResourceGroup*, then choose your managed domain from the list of Azure resources, such as *aaddscontoso.com*. The **Overview** tab shows that the managed domain is currently *Deploying*. You can't configure the managed domain until it's fully provisioned.
+1. Select your resource group, such as *myResourceGroup*, then choose your managed domain from the list of Azure resources, such as *aadds.contoso.com*. The **Overview** tab shows that the managed domain is currently *Deploying*. You can't configure the managed domain until it's fully provisioned.
 
     ![Domain Services status during the provisioning state](./media/tutorial-create-instance-advanced/provisioning-in-progress.png)
 

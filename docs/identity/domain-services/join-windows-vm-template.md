@@ -90,8 +90,8 @@ To create a Windows Server VM then join it to a managed domain, complete the fol
     | Existing Subnet Name      | The name of the existing virtual network subnet, such as *Workloads*. |
     | DNS Label Prefix          | Enter a DNS name to use for the VM, such as *myvm*. |
     | VM size                   | Specify a VM size, such as *Standard_DS2_v2*. |
-    | Domain To Join            | The managed domain DNS name, such as *aaddscontoso.com*. |
-    | Domain Username           | The user account in the managed domain that should be used to join the VM to the managed domain, such as `contosoadmin@aaddscontoso.com`. This account must be a part of the managed domain. |
+    | Domain To Join            | The managed domain DNS name, such as *aadds.contoso.com*. |
+    | Domain Username           | The user account in the managed domain that should be used to join the VM to the managed domain, such as `contosoadmin@aadds.contoso.com`. This account must be a part of the managed domain. |
     | Domain Password           | The password for the user account specified in the previous setting. |
     | Optional OU Path          | The custom OU in which to add the VM. If you don't specify a value for this parameter, the VM is added to the default *Microsoft Entra DC Computers* OU. |
     | VM Admin Username         | Specify a local administrator account to create on the VM. |
@@ -120,7 +120,7 @@ To join an existing Windows Server VM to a managed domain, complete the followin
     | Resource group            | Choose the resource group with your existing VM. |
     | Location                  | Select the location of your existing VM. |
     | VM list                   | Enter the comma-separated list of the existing VM(s) to join to the managed domain, such as *myVM1,myVM2*. |
-    | Domain Join User Name     | The user account in the managed domain that should be used to join the VM to the managed domain, such as `contosoadmin@aaddscontoso.com`. This account must be a part of the managed domain. |
+    | Domain Join User Name     | The user account in the managed domain that should be used to join the VM to the managed domain, such as `contosoadmin@aadds.contoso.com`. This account must be a part of the managed domain. |
     | Domain Join User Password | The password for the user account specified in the previous setting. |
     | Optional OU Path          | The custom OU in which to add the VM. If you don't specify a value for this parameter, the VM is added to the default *Microsoft Entra DC Computers* OU. |
 

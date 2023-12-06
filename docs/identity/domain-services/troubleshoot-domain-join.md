@@ -30,7 +30,7 @@ If the VM can't find the managed domain, there's usually a network connection or
 
 1. Ensure the VM is connected to the same, or a peered, virtual network as the managed domain. If not, the VM can't find and connect to the domain in order to join.
     * If the VM isn't connected to the same virtual network, confirm that the virtual networking peering or VPN connection is *Active* or *Connected* to allow the traffic to flow correctly.
-1. Try to ping the domain using the domain name of the managed domain, such as `ping aaddscontoso.com`.
+1. Try to ping the domain using the domain name of the managed domain, such as `ping aadds.contoso.com`.
     * If the ping response fails, try to ping the IP addresses for the domain displayed on the overview page in the portal for your managed domain, such as `ping 10.0.0.4`.
     * If you can successfully ping the IP address but not the domain, DNS may be incorrectly configured. Make sure that you've [configured the managed domain DNS servers for the virtual network][configure-dns].
 1. Try flushing the DNS resolver cache on the virtual machine, such as `ipconfig /flushdns`.

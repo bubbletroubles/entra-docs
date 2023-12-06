@@ -105,7 +105,7 @@ To install the Active Directory Administration tools on a domain-joined VM, comp
 1. In the *Dashboard* pane of the **Server Manager** window, select **Add Roles and Features**.
 1. On the **Before You Begin** page of the *Add Roles and Features Wizard*, select **Next**.
 1. For the *Installation Type*, leave the **Role-based or feature-based installation** option checked and select **Next**.
-1. On the **Server Selection** page, choose the current VM from the server pool, such as *myvm.aaddscontoso.com*, then select **Next**.
+1. On the **Server Selection** page, choose the current VM from the server pool, such as *myvm.aadds.contoso.com*, then select **Next**.
 1. On the **Server Roles** page, click **Next**.
 1. On the **Features** page, expand the **Remote Server Administration Tools** node, then expand the **Role Administration Tools** node.
 

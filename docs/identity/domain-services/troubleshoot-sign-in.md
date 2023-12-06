@@ -61,7 +61,7 @@ Managed domains with no on-premises synchronization, only accounts in Microsoft 
     * [Change the password for the account][enable-user-accounts] to generate the required password hashes, then wait for 15 minutes before you try to sign in again.
     * If you disable Domain Services and then re-enable, each account must follow the steps again to change their password and generate the required password hashes.
 * **Yes, the password has been changed.**
-    * Try to sign in using the *UPN* format, such as `driley@aaddscontoso.com`, instead of the *SAMAccountName* format like `AADDSCONTOSO\deeriley`.
+    * Try to sign in using the *UPN* format, such as `driley@aadds.contoso.com`, instead of the *SAMAccountName* format like `AADDSCONTOSO\deeriley`.
     * The *SAMAccountName* may be automatically generated for users whose UPN prefix is overly long or is the same as another user on the managed domain. The *UPN* format is guaranteed to be unique within a Microsoft Entra tenant.
 
 ## The account is locked out

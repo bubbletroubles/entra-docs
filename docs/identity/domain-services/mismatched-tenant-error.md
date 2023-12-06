@@ -22,7 +22,7 @@ This article explains why the error occurs and how to resolve it.
 
 ## What causes this error?
 
-A mismatched directory error happens when a Domain Services managed domain and virtual network belong to two different Microsoft Entra tenants. For example, you may have a managed domain called *aaddscontoso.com* that runs in Contoso's Microsoft Entra tenant. However, the Azure virtual network for managed domain is part of the Fabrikam Microsoft Entra tenant.
+A mismatched directory error happens when a Domain Services managed domain and virtual network belong to two different Microsoft Entra tenants. For example, you may have a managed domain called *aadds.contoso.com* that runs in Contoso's Microsoft Entra tenant. However, the Azure virtual network for managed domain is part of the Fabrikam Microsoft Entra tenant.
 
 Azure role-based access control (Azure RBAC) is used to limit access to resources. When you enable Domain Services in a Microsoft Entra tenant, credential hashes are synchronized to the managed domain. This operation requires you to be a tenant admin for the Microsoft Entra directory, and access to the credentials must be controlled.
 

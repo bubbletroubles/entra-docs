@@ -93,7 +93,7 @@ You see an [alert][resolve-alerts] on the Domain Services Health page in the Mic
 To restore the health of a managed domain that's in the *Suspended* state, complete the following steps:
 
 1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Domain services**.
-1. Choose your managed domain from the list, such as *aaddscontoso.com*, then select **Health**.
+1. Choose your managed domain from the list, such as *aadds.contoso.com*, then select **Health**.
 1. Select the alert, such as *AADDS503* or *AADDS504*, depending on the cause of suspension.
 1. Choose the resolution link that's provided in the alert and follow the steps to resolve it.
 

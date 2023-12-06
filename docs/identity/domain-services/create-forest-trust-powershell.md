@@ -129,7 +129,7 @@ To create a managed domain, you use the `New-AzureAaddsForest` script. This scri
         -aaddsResourceGroupName "myResourceGroup" `
         -aaddsLocation "WestUS" `
         -aaddsAdminUser "contosoadmin@contoso.com" `
-        -aaddsDomainName "aaddscontoso.com" `
+        -aaddsDomainName "aadds.contoso.com" `
         -aaddsVnetName "myVnet" `
         -aaddsVnetCIDRAddressSpace "192.168.0.0/16" `
         -aaddsSubnetName "AzureADDS" `
@@ -163,7 +163,7 @@ Before you start, make sure you understand the [network considerations and recom
     * Confirm that your on-premises domain controller can connect to the managed VM using `ping` or remote desktop, for example.
     * Verify that your management VM can connect to your on-premises domain controllers, again using a utility such as `ping`.
 
-1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aaddscontoso.com* and wait for the status to report as **Running**.
+1. In the Microsoft Entra admin center, search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aadds.contoso.com* and wait for the status to report as **Running**.
 
     When running, [update DNS settings for the Azure virtual network](tutorial-create-instance.md#update-dns-settings-for-the-azure-virtual-network) and then [enable user accounts for Domain Services](tutorial-create-instance.md#enable-user-accounts-for-azure-ad-ds) to finalize the configurations for your managed domain.
 
@@ -174,7 +174,7 @@ Before you start, make sure you understand the [network considerations and recom
     From a command prompt, use `nslookup` and the managed domain name to validate name resolution for the forest.
 
     ```console
-    nslookup aaddscontoso.com
+    nslookup aadds.contoso.com
     ```
 
     The command should return two IP addresses for the forest.
@@ -195,7 +195,7 @@ Now provide the script the following information:
 
 | Name                               | Script parameter     | Description |
 |:-----------------------------------|:---------------------|:------------|
-| Domain Services domain name            | *-ManagedDomainFqdn* | FQDN of the managed domain, such as *aaddscontoso.com* |
+| Domain Services domain name            | *-ManagedDomainFqdn* | FQDN of the managed domain, such as *aadds.contoso.com* |
 | On-premises AD DS domain name      | *-TrustFqdn*         | The FQDN of the trusted forest, such as *onprem.contoso.com* |
 | Trust friendly name                | *-TrustFriendlyName* | Friendly name of the trust relationship. |
 | On-premises AD DS DNS IP addresses | *-TrustDnsIPs*       | A comma-delimited list of DNS server IPv4 addresses for the trusted domain listed. |
@@ -206,7 +206,7 @@ The following example creates a trust relationship named *myAzureADDSTrust* to *
 
 ```azurepowershell
 Add-AaddsResourceForestTrust `
-    -ManagedDomainFqdn "aaddscontoso.com" `
+    -ManagedDomainFqdn "aadds.contoso.com" `
     -TrustFqdn "onprem.contoso.com" `
     -TrustFriendlyName "myAzureADDSTrust" `
     -TrustDnsIPs "10.0.1.10,10.0.1.11" `
@@ -224,7 +224,7 @@ To correctly resolve the managed domain from the on-premises environment, you ma
 1. Right-select DNS server, such as *myAD01*, select **Properties**
 1. Choose **Forwarders**, then **Edit** to add additional forwarders.
 1. Add the IP addresses of the managed domain, such as *10.0.1.4* and *10.0.1.5*.
-1. From a local command prompt, validate name resolution using **nslookup** of the managed domain name. For example, `Nslookup aaddscontoso.com` should return the two IP addresses for the  managed domain.
+1. From a local command prompt, validate name resolution using **nslookup** of the managed domain name. For example, `Nslookup aadds.contoso.com` should return the two IP addresses for the  managed domain.
 
 ## Create inbound forest trust in the on-premises domain
 
@@ -235,7 +235,7 @@ To configure inbound trust on the on-premises AD DS domain, complete the followi
 1. Select **Start | Administrative Tools | Active Directory Domains and Trusts**
 1. Right-select domain, such as *onprem.contoso.com*, select **Properties**
 1. Choose **Trusts** tab, then **New Trust**
-1. Enter the name of the managed domain, such as *aaddscontoso.com*, then select **Next**
+1. Enter the name of the managed domain, such as *aadds.contoso.com*, then select **Next**
 1. Select the option to create a **Forest trust**, then to create a **One way: incoming** trust.
 1. Choose to create the trust for **This domain only**. In the next step, you create the trust in the Microsoft Entra admin center for the managed domain.
 1. Choose to use **Forest-wide authentication**, then enter and confirm a trust password. This same password is also entered in the Microsoft Entra admin center in the next section.
@@ -329,7 +329,7 @@ Using the Windows Server VM joined to the managed domain, you can test the scena
 #### Validate cross-forest authentication to a resource
 
 1. Sign in a Windows computer joined to your on-premises Active Directory using a user account from your on-premises Active Directory.
-1. Using **Windows Explorer**, connect to the share you created using the fully qualified host name and the share such as `\\fs1.aaddscontoso.com\CrossforestShare`.
+1. Using **Windows Explorer**, connect to the share you created using the fully qualified host name and the share such as `\\fs1.aadds.contoso.com\CrossforestShare`.
 1. To validate the write permission, right-select in the folder, choose **New**, then select **Text Document**. Use the default name **New Text Document**.
 
     If the write permissions are set correctly, a new text document is created. The following steps will then open, edit, and delete the file as appropriate.
@@ -357,7 +357,7 @@ The following example steps show you how to update an existing trust relationshi
 
     ```powershell
     $existingTrust = Get-AaddsResourceForestTrust `
-        -ManagedDomainFqdn "aaddscontoso.com" `
+        -ManagedDomainFqdn "aadds.contoso.com" `
         -TrustFqdn "onprem.contoso.com" `
         -TrustFriendlyName "myAzureADDSTrust"
     ```
@@ -380,11 +380,11 @@ If you no longer need the one-way outbound forest trust from the managed domain 
     Install-Script -Name Remove-AaddsResourceForestTrust
     ```
 
-1. Now remove the forest trust using the `Remove-AaddsResourceForestTrust` script. In the following example, the trust named *myAzureADDSTrust* between the managed domain forest named *aaddscontoso.com* and on-premises forest *onprem.contoso.com* is removed. Specify your own managed domain forest name and on-premises forest name to remove:
+1. Now remove the forest trust using the `Remove-AaddsResourceForestTrust` script. In the following example, the trust named *myAzureADDSTrust* between the managed domain forest named *aadds.contoso.com* and on-premises forest *onprem.contoso.com* is removed. Specify your own managed domain forest name and on-premises forest name to remove:
 
     ```powershell
     Remove-AaddsResourceForestTrust `
-        -ManagedDomainFqdn "aaddscontoso.com" `
+        -ManagedDomainFqdn "aadds.contoso.com" `
         -TrustFqdn "onprem.contoso.com" `
         -TrustFriendlyName "myAzureADDSTrust"
     ```

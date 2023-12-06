@@ -65,11 +65,11 @@ To create a custom OU, you use the Active Directory Administrative Tools from a 
 1. Sign in to your management VM. For steps on how to connect using the Microsoft Entra admin center, see [Connect to a Windows Server VM][connect-windows-server-vm].
 1. From the Start screen, select **Administrative Tools**. A list of available management tools is shown that were installed in the tutorial to [create a management VM][tutorial-create-management-vm].
 1. To create and manage OUs, select **Active Directory Administrative Center** from the list of administrative tools.
-1. In the left pane, choose your managed domain, such as *aaddscontoso.com*. A list of existing OUs and resources is shown:
+1. In the left pane, choose your managed domain, such as *aadds.contoso.com*. A list of existing OUs and resources is shown:
 
     ![Select your managed domain in the Active Directory Administrative Center](./media/create-ou/create-ou-adac-overview.png)
 
-1. The **Tasks** pane is shown on the right side of the Active Directory Administrative Center. Under the domain, such as *aaddscontoso.com*, select **New > Organizational Unit**.
+1. The **Tasks** pane is shown on the right side of the Active Directory Administrative Center. Under the domain, such as *aadds.contoso.com*, select **New > Organizational Unit**.
 
     ![Select the option to create a new OU in the Active Directory Administrative Center](./media/create-ou/create-ou-adac-new-ou.png)
 

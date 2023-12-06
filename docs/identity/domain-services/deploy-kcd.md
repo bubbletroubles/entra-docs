@@ -54,9 +54,9 @@ Resource-based KCD is configured using PowerShell. You use the [Set-ADComputer][
 
 ## Configure resource-based KCD for a computer account
 
-In this scenario, let's assume you have a web app that runs on the computer named *contoso-webapp.aaddscontoso.com*.
+In this scenario, let's assume you have a web app that runs on the computer named *contoso-webapp.aadds.contoso.com*.
 
-The web app needs to access a web API that runs on the computer named *contoso-api.aaddscontoso.com* in the context of domain users.
+The web app needs to access a web API that runs on the computer named *contoso-api.aadds.contoso.com* in the context of domain users.
 
 Complete the following steps to configure this scenario:
 
@@ -71,8 +71,8 @@ Complete the following steps to configure this scenario:
     From your domain-joined management VM and logged in as user account that's a member of the *Microsoft Entra DC administrators* group, run the following cmdlets. Provide your own computer names as needed:
     
     ```powershell
-    $ImpersonatingAccount = Get-ADComputer -Identity contoso-webapp.aaddscontoso.com
-    Set-ADComputer contoso-api.aaddscontoso.com -PrincipalsAllowedToDelegateToAccount $ImpersonatingAccount
+    $ImpersonatingAccount = Get-ADComputer -Identity contoso-webapp.aadds.contoso.com
+    Set-ADComputer contoso-api.aadds.contoso.com -PrincipalsAllowedToDelegateToAccount $ImpersonatingAccount
     ```
 
 ## Configure resource-based KCD for a user account

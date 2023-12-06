@@ -59,13 +59,13 @@ sudo vi /etc/hosts
 
 In the *hosts* file, update the *localhost* address. In the following example:
 
-* *aaddscontoso.com* is the DNS domain name of your managed domain.
+* *aadds.contoso.com* is the DNS domain name of your managed domain.
 * *linux-q2gr* is the hostname of your SLE VM that you're joining to the managed domain.
 
 Update these names with your own values:
 
 ```config
-127.0.0.1 linux-q2gr linux-q2gr.aaddscontoso.com
+127.0.0.1 linux-q2gr linux-q2gr.aadds.contoso.com
 ```
 
 When done, save and exit the *hosts* file using the `:wq` command of the editor.
@@ -102,7 +102,7 @@ To join the VM to the managed domain, complete the following steps:
 
 1. In the dialog box, select **Add Domain**.
 
-1. Specify the correct *Domain name*, such as *aaddscontoso.com*, then specify the services to use for identity data and authentication. Select *Microsoft Active Directory* for both.
+1. Specify the correct *Domain name*, such as *aadds.contoso.com*, then specify the services to use for identity data and authentication. Select *Microsoft Active Directory* for both.
 
     Make sure the option for *Enable the domain* is selected.
 
@@ -150,7 +150,7 @@ To join the managed domain using **winbind** and the *Windows Domain Membership*
 
 1. In YaST, select **Network Services > Windows Domain Membership**.
 
-1. Enter the domain to join at *Domain or Workgroup* in the *Windows Domain Membership* screen. Enter the managed domain name, such as *aaddscontoso.com*.
+1. Enter the domain to join at *Domain or Workgroup* in the *Windows Domain Membership* screen. Enter the managed domain name, such as *aadds.contoso.com*.
 
     ![Example screenshot of the Windows Domain Membership window in YaST](./media/join-suse-linux-vm/samba-client-window.png)
 
@@ -179,7 +179,7 @@ To join the managed domain using **winbind** and the *YaST command line interfac
 * Join the domain:
 
   ```bash
-  sudo yast samba-client joindomain domain=aaddscontoso.com user=<admin> password=<admin password> machine=<(optional) machine account>
+  sudo yast samba-client joindomain domain=aadds.contoso.com user=<admin> password=<admin password> machine=<(optional) machine account>
   ```
 
 ## Join VM to the managed domain using Winbind from the terminal
@@ -205,7 +205,7 @@ To join the managed domain using **winbind** and the *`samba net` command*:
          idmap config AADDSCONTOSO : backend = rid
          idmap config AADDSCONTOSO : range = 5000000-5999999
          kerberos method = secrets and keytab
-         realm = AADDSCONTOSO.COM
+         realm = aadds.contoso.com
          security = ADS
          template homedir = /home/%D/%U
          template shell = /bin/bash
@@ -217,16 +217,16 @@ To join the managed domain using **winbind** and the *`samba net` command*:
    
      ```config
      [libdefaults]
-         default_realm = AADDSCONTOSO.COM
+         default_realm = aadds.contoso.com
          clockskew = 300
      [realms]
-         AADDSCONTOSO.COM = {
-             kdc = PDC.AADDSCONTOSO.COM
-             default_domain = AADDSCONTOSO.COM
-             admin_server = PDC.AADDSCONTOSO.COM
+         aadds.contoso.com = {
+             kdc = PDC.aadds.contoso.com
+             default_domain = aadds.contoso.com
+             admin_server = PDC.aadds.contoso.com
          }
      [domain_realm]
-         .aaddscontoso.com = AADDSCONTOSO.COM
+         .aadds.contoso.com = aadds.contoso.com
      [appdefaults]
          pam = {
              ticket_lifetime = 1d
@@ -259,7 +259,7 @@ To join the managed domain using **winbind** and the *`samba net` command*:
    1. Add the following line to `/etc/ntp.conf`:
      
       ```config
-      server aaddscontoso.com
+      server aadds.contoso.com
       ```
 
    1. Restart the NTP service:
@@ -327,11 +327,11 @@ To grant members of the *AAD DC Administrators* group administrative privileges 
     sudo visudo
     ```
 
-1. Add the following entry to the end of */etc/sudoers* file. The *AAD DC Administrators* group contains whitespace in the name, so include the backslash escape character in the group name. Add your own domain name, such as *aaddscontoso.com*:
+1. Add the following entry to the end of */etc/sudoers* file. The *AAD DC Administrators* group contains whitespace in the name, so include the backslash escape character in the group name. Add your own domain name, such as *aadds.contoso.com*:
 
     ```config
     # Add 'AAD DC Administrators' group members as admins.
-    %AAD\ DC\ Administrators@aaddscontoso.com ALL=(ALL) NOPASSWD:ALL
+    %AAD\ DC\ Administrators@aadds.contoso.com ALL=(ALL) NOPASSWD:ALL
     ```
 
     When done, save and exit the editor using the `:wq` command of the editor.
@@ -340,10 +340,10 @@ To grant members of the *AAD DC Administrators* group administrative privileges 
 
 To verify that the VM has been successfully joined to the managed domain, start a new SSH connection using a domain user account. Confirm that a home directory has been created, and that group membership from the domain is applied.
 
-1. Create a new SSH connection from your console. Use a domain account that belongs to the managed domain using the `ssh -l` command, such as `contosoadmin@aaddscontoso.com` and then enter the address of your VM, such as *linux-q2gr.aaddscontoso.com*. If you use the Azure Cloud Shell, use the public IP address of the VM rather than the internal DNS name.
+1. Create a new SSH connection from your console. Use a domain account that belongs to the managed domain using the `ssh -l` command, such as `contosoadmin@aadds.contoso.com` and then enter the address of your VM, such as *linux-q2gr.aadds.contoso.com*. If you use the Azure Cloud Shell, use the public IP address of the VM rather than the internal DNS name.
 
     ```bash
-    sudo ssh -l contosoadmin@AADDSCONTOSO.com linux-q2gr.aaddscontoso.com
+    sudo ssh -l contosoadmin@aadds.contoso.com linux-q2gr.aadds.contoso.com
     ```
 
 2. When you've successfully connected to the VM, verify that the home directory was initialized correctly:

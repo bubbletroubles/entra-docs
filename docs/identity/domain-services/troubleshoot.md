@@ -28,7 +28,7 @@ If you have problems enabling Domain Services, review the following common error
 
 | **Sample error Message** | **Resolution** |
 | --- |:--- |
-| *The name aaddscontoso.com is already in use on this network. Specify a name that is not in use.* |[Domain name conflict in the virtual network](troubleshoot.md#domain-name-conflict) |
+| *The name aadds.contoso.com is already in use on this network. Specify a name that is not in use.* |[Domain name conflict in the virtual network](troubleshoot.md#domain-name-conflict) |
 | *Domain Services could not be enabled in this Microsoft Entra tenant. The service does not have adequate permissions to the application called Microsoft Entra Domain Services Sync. Delete the application called 'Microsoft Entra Domain Services Sync' and then try to enable Domain Services for your Microsoft Entra tenant.* |[Domain Services doesn't have adequate permissions to the Microsoft Entra Domain Services Sync application](troubleshoot.md#inadequate-permissions) |
 | *Domain Services could not be enabled in this Microsoft Entra tenant. The Domain Services application in your Microsoft Entra tenant does not have the required permissions to enable Domain Services. Delete the application with the application identifier d87dcbc6-a371-462e-88e3-28ad15ec4e64 and then try to enable Domain Services for your Microsoft Entra tenant.* |[The Domain Services application isn't configured properly in your Microsoft Entra tenant](troubleshoot.md#invalid-configuration) |
 | *Domain Services could not be enabled in this Microsoft Entra tenant. The Microsoft Entra application is disabled in your Microsoft Entra tenant. Enable the application with the application identifier 00000002-0000-0000-c000-000000000000 and then try to enable Domain Services for your Microsoft Entra tenant.* |[The Microsoft Graph application is disabled in your Microsoft Entra tenant](troubleshoot.md#microsoft-graph-disabled) |
@@ -37,11 +37,11 @@ If you have problems enabling Domain Services, review the following common error
 
 **Error message**
 
-*The name aaddscontoso.com is already in use on this network. Specify a name that is not in use.*
+*The name aadds.contoso.com is already in use on this network. Specify a name that is not in use.*
 
 **Resolution**
 
-Check that you don't have an existing AD DS environment with the same domain name on the same, or a peered, virtual network. For example, you may have an AD DS domain named *aaddscontoso.com* that runs on Azure VMs. When you try to enable a Domain Services managed domain with the same domain name of *aaddscontoso.com* on the virtual network, the requested operation fails.
+Check that you don't have an existing AD DS environment with the same domain name on the same, or a peered, virtual network. For example, you may have an AD DS domain named *aadds.contoso.com* that runs on Azure VMs. When you try to enable a Domain Services managed domain with the same domain name of *aadds.contoso.com* on the virtual network, the requested operation fails.
 
 This failure is due to name conflicts for the domain name on the virtual network. A DNS lookup checks if an existing AD DS environment responds on the requested domain name. To resolve this failure, use a different name to set up your managed domain, or deprovision the existing AD DS domain and then try again to enable Domain Services.
 

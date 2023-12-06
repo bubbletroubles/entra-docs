@@ -145,7 +145,7 @@ With the VM created and a web-based RDP connection established using Azure Basti
 
     ![Choose to change the workgroup or domain properties](./media/join-windows-vm/change-domain.png)
 
-1. In the **Domain** box, specify the name of your managed domain, such as *aaddscontoso.com*, then select **OK**.
+1. In the **Domain** box, specify the name of your managed domain, such as *aadds.contoso.com*, then select **OK**.
 
     ![Specify the managed domain to join](./media/join-windows-vm/join-domain.png)
 
@@ -205,7 +205,7 @@ If you don't receive a prompt that asks for credentials to join the domain, ther
 After trying each of these troubleshooting steps, try to join the Windows Server VM to the managed domain again.
 
 * Verify the VM is connected to the same virtual network that Domain Services is enabled in, or has a peered network connection.
-* Try to ping the DNS domain name of the managed domain, such as `ping aaddscontoso.com`.
+* Try to ping the DNS domain name of the managed domain, such as `ping aadds.contoso.com`.
     * If the ping request fails, try to ping the IP addresses for the managed domain, such as `ping 10.0.0.4`. The IP address for your environment is displayed on the *Properties* page when you select the managed domain from your list of Azure resources.
     * If you can ping the IP address but not the domain, DNS may be incorrectly configured. Confirm that the IP addresses of the managed domain are configured as DNS servers for the virtual network.
 * Try to flush the DNS resolver cache on the virtual machine using the `ipconfig /flushdns` command.

@@ -60,13 +60,13 @@ sudo vi /etc/hosts
 
 In the *hosts* file, update the *localhost* address. In the following example:
 
-* *aaddscontoso.com* is the DNS domain name of your managed domain.
+* *aadds.contoso.com* is the DNS domain name of your managed domain.
 * *ubuntu* is the hostname of your Ubuntu VM that you're joining to the managed domain.
 
 Update these names with your own values:
 
 ```config
-127.0.0.1 ubuntu.aaddscontoso.com ubuntu
+127.0.0.1 ubuntu.aadds.contoso.com ubuntu
 ```
 
 When done, save and exit the *hosts* file using the `:wq` command of the editor.
@@ -75,7 +75,7 @@ When done, save and exit the *hosts* file using the `:wq` command of the editor.
 
 The VM needs some additional packages to join the VM to the managed domain. To install and configure these packages, update and install the domain-join tools using `apt-get`
 
-During the Kerberos installation, the *krb5-user* package prompts for the realm name in ALL UPPERCASE. For example, if the name of your managed domain is *aaddscontoso.com*, enter *AADDSCONTOSO.COM* as the realm. The installation writes the `[realm]` and `[domain_realm]` sections in */etc/krb5.conf* configuration file. Make sure that you specify the realm an ALL UPPERCASE:
+During the Kerberos installation, the *krb5-user* package prompts for the realm name in ALL UPPERCASE. For example, if the name of your managed domain is *aadds.contoso.com*, enter *aadds.contoso.com* as the realm. The installation writes the `[realm]` and `[domain_realm]` sections in */etc/krb5.conf* configuration file. Make sure that you specify the realm an ALL UPPERCASE:
 
 ```bash
 sudo apt-get update
@@ -92,10 +92,10 @@ For domain communication to work correctly, the date and time of your Ubuntu VM 
     sudo vi /etc/ntp.conf
     ```
 
-1. In the *ntp.conf* file, create a line to add your managed domain's DNS name. In the following example, an entry for *aaddscontoso.com* is added. Use your own DNS name:
+1. In the *ntp.conf* file, create a line to add your managed domain's DNS name. In the following example, an entry for *aadds.contoso.com* is added. Use your own DNS name:
 
     ```config
-    server aaddscontoso.com
+    server aadds.contoso.com
     ```
 
     When done, save and exit the *ntp.conf* file using the `:wq` command of the editor.
@@ -110,7 +110,7 @@ For domain communication to work correctly, the date and time of your Ubuntu VM 
 
     ```bash
     sudo systemctl stop ntp
-    sudo ntpdate aaddscontoso.com
+    sudo ntpdate aadds.contoso.com
     sudo systemctl start ntp
     ```
 
@@ -118,30 +118,30 @@ For domain communication to work correctly, the date and time of your Ubuntu VM 
 
 Now that the required packages are installed on the VM and NTP is configured, join the VM to the managed domain.
 
-1. Use the `realm discover` command to discover the managed domain. The following example discovers the realm *AADDSCONTOSO.COM*. Specify your own managed domain name in ALL UPPERCASE:
+1. Use the `realm discover` command to discover the managed domain. The following example discovers the realm *aadds.contoso.com*. Specify your own managed domain name in ALL UPPERCASE:
 
     ```bash
-    sudo realm discover AADDSCONTOSO.COM
+    sudo realm discover aadds.contoso.com
     ```
 
    If the `realm discover` command can't find your managed domain, review the following troubleshooting steps:
 
-    * Make sure that the domain is reachable from the VM. Try `ping aaddscontoso.com` to see if a positive reply is returned.
+    * Make sure that the domain is reachable from the VM. Try `ping aadds.contoso.com` to see if a positive reply is returned.
     * Check that the VM is deployed to the same, or a peered, virtual network in which the managed domain is available.
     * Confirm that the DNS server settings for the virtual network have been updated to point to the domain controllers of the managed domain.
 
 1. Now initialize Kerberos using the `kinit` command. Specify a user that's a part of the managed domain. If needed, [add a user account to a group in Microsoft Entra ID](/azure/active-directory/fundamentals/how-to-manage-groups).
 
-    Again, the managed domain name must be entered in ALL UPPERCASE. In the following example, the account named `contosoadmin@aaddscontoso.com` is used to initialize Kerberos. Enter your own user account that's a part of the managed domain:
+    Again, the managed domain name must be entered in ALL UPPERCASE. In the following example, the account named `contosoadmin@aadds.contoso.com` is used to initialize Kerberos. Enter your own user account that's a part of the managed domain:
 
     ```bash
-    sudo kinit -V contosoadmin@AADDSCONTOSO.COM
+    sudo kinit -V contosoadmin@aadds.contoso.com
     ```
 
-1. Finally, join the VM to the managed domain using the `realm join` command. Use the same user account that's a part of the managed domain that you specified in the previous `kinit` command, such as `contosoadmin@AADDSCONTOSO.COM`:
+1. Finally, join the VM to the managed domain using the `realm join` command. Use the same user account that's a part of the managed domain that you specified in the previous `kinit` command, such as `contosoadmin@aadds.contoso.com`:
 
     ```bash
-    sudo realm join --verbose AADDSCONTOSO.COM -U 'contosoadmin@AADDSCONTOSO.COM' --install=/
+    sudo realm join --verbose aadds.contoso.com -U 'contosoadmin@aadds.contoso.com' --install=/
     ```
 
 It takes a few moments to join the VM to the managed domain. The following example output shows the VM has successfully joined to the managed domain:
@@ -251,10 +251,10 @@ To grant members of the *AAD DC Administrators* group administrative privileges 
 
 To verify that the VM has been successfully joined to the managed domain, start a new SSH connection using a domain user account. Confirm that a home directory has been created, and that group membership from the domain is applied.
 
-1. Create a new SSH connection from your console. Use a domain account that belongs to the managed domain using the `ssh -l` command, such as `contosoadmin@aaddscontoso.com` and then enter the address of your VM, such as *ubuntu.aaddscontoso.com*. If you use the Azure Cloud Shell, use the public IP address of the VM rather than the internal DNS name.
+1. Create a new SSH connection from your console. Use a domain account that belongs to the managed domain using the `ssh -l` command, such as `contosoadmin@aadds.contoso.com` and then enter the address of your VM, such as *ubuntu.aadds.contoso.com*. If you use the Azure Cloud Shell, use the public IP address of the VM rather than the internal DNS name.
 
     ```bash
-    sudo ssh -l contosoadmin@AADDSCONTOSO.com ubuntu.aaddscontoso.com
+    sudo ssh -l contosoadmin@aadds.contoso.com ubuntu.aadds.contoso.com
     ```
 
 1. When you've successfully connected to the VM, verify that the home directory was initialized correctly:

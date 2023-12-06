@@ -97,16 +97,16 @@ For more information, see [Configure Kerberos constrained delegation (KCD) in Mi
 
 Use the [Get-ADComputer][Get-ADComputer] to retrieve the settings for the computer on which the Microsoft Entra application proxy connector is installed. From your domain-joined management VM and logged in as user account that's a member of the *Microsoft Entra DC administrators* group, run the following cmdlets.
 
-The following example gets information about the computer account named *appproxy.aaddscontoso.com*. Provide your own computer name for the Microsoft Entra application proxy VM configured in the previous steps.
+The following example gets information about the computer account named *appproxy.aadds.contoso.com*. Provide your own computer name for the Microsoft Entra application proxy VM configured in the previous steps.
 
 ```powershell
-$ImpersonatingAccount = Get-ADComputer -Identity appproxy.aaddscontoso.com
+$ImpersonatingAccount = Get-ADComputer -Identity appproxy.aadds.contoso.com
 ```
 
-For each application server that runs the apps behind Microsoft Entra application proxy use the [Set-ADComputer][Set-ADComputer] PowerShell cmdlet to configure resource-based KCD. In the following example, the Microsoft Entra application proxy connector is granted permissions to use the *appserver.aaddscontoso.com* computer:
+For each application server that runs the apps behind Microsoft Entra application proxy use the [Set-ADComputer][Set-ADComputer] PowerShell cmdlet to configure resource-based KCD. In the following example, the Microsoft Entra application proxy connector is granted permissions to use the *appserver.aadds.contoso.com* computer:
 
 ```powershell
-Set-ADComputer appserver.aaddscontoso.com -PrincipalsAllowedToDelegateToAccount $ImpersonatingAccount
+Set-ADComputer appserver.aadds.contoso.com -PrincipalsAllowedToDelegateToAccount $ImpersonatingAccount
 ```
 
 If you deploy multiple Microsoft Entra application proxy connectors, you must configure resource-based KCD for each connector instance.

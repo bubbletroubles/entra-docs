@@ -36,7 +36,7 @@ Take a look at our short video to learn more about Domain Services.
 
 ## How does Domain Services work?
 
-When you create a Domain Services managed domain, you define a unique namespace. This namespace is the domain name, such as *aaddscontoso.com*. Two Windows Server domain controllers (DCs) are then deployed into your selected Azure region. This deployment of DCs is known as a replica set.
+When you create a Domain Services managed domain, you define a unique namespace. This namespace is the domain name, such as *aadds.contoso.com*. Two Windows Server domain controllers (DCs) are then deployed into your selected Azure region. This deployment of DCs is known as a replica set.
 
 You don't need to manage, configure, or update these DCs. The Azure platform handles the DCs as part of the managed domain, including backups and encryption at rest using Azure Disk Encryption.
 

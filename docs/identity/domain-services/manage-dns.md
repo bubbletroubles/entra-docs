@@ -51,7 +51,7 @@ To create and modify DNS records in a managed domain, you need to install the DN
 1. In the *Dashboard* pane of the **Server Manager** window, select **Add Roles and Features**.
 1. On the **Before You Begin** page of the *Add Roles and Features Wizard*, select **Next**.
 1. For the *Installation Type*, leave the **Role-based or feature-based installation** option checked and select **Next**.
-1. On the **Server Selection** page, choose the current VM from the server pool, such as *myvm.aaddscontoso.com*, then select **Next**.
+1. On the **Server Selection** page, choose the current VM from the server pool, such as *myvm.aadds.contoso.com*, then select **Next**.
 1. On the **Server Roles** page, click **Next**.
 1. On the **Features** page, expand the **Remote Server Administration Tools** node, then expand the **Role Administration Tools** node. Select **DNS Server Tools** feature from the list of role administration tools.
 
@@ -68,7 +68,7 @@ With the DNS Server tools installed, you can administer DNS records on the manag
 > To administer DNS in a managed domain, you must be signed in to a user account that's a member of the *AAD DC Administrators* group.
 
 1. From the Start screen, select **Administrative Tools**. A list of available management tools is shown, including **DNS** installed in the previous section. Select **DNS** to launch the DNS Management console.
-1. In the **Connect to DNS Server** dialog, select **The following computer**, then enter the DNS domain name of the managed domain, such as *aaddscontoso.com*:
+1. In the **Connect to DNS Server** dialog, select **The following computer**, then enter the DNS domain name of the managed domain, such as *aadds.contoso.com*:
 
     ![Connect to the managed domain in the DNS console](./media/manage-dns/connect-dns-server.png)
 
@@ -87,7 +87,7 @@ A conditional forwarder is a configuration option in a DNS server that lets you 
 
 To create a conditional forwarder in your managed domain, complete the following steps:
 
-1. Select your DNS zone, such as *aaddscontoso.com*.
+1. Select your DNS zone, such as *aadds.contoso.com*.
 1. Select **Conditional Forwarders**, then right-select and choose **New Conditional Forwarder...**
 1. Enter your other **DNS Domain**, such as *contoso.com*, then enter the IP addresses of the DNS servers for that namespace, as shown in the following example:
 

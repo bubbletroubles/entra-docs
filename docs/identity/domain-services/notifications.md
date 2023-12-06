@@ -55,7 +55,7 @@ To review the existing email notification recipients, or add recipients, complet
 
 1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com) as a [Global Administrator](/azure/active-directory/roles/permissions-reference#authentication-policy-administrator).
 1. Search for and select **Microsoft Entra Domain Services**.
-1. Select your managed domain, such as *aaddscontoso.com*.
+1. Select your managed domain, such as *aadds.contoso.com*.
 1. On the left-hand side of the Domain Services resource window, select **Notification settings**. The existing recipients for email notifications are shown.
 1. To add an email recipient, enter the email address in the additional recipients table.
 1. When done, select **Save** on the top-hand navigation.

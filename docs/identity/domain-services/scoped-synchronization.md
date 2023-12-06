@@ -54,7 +54,7 @@ To learn more about the synchronization process, see [Understand synchronization
 
 To enable scoped synchronization in the Microsoft Entra admin center, complete the following steps:
 
-1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aaddscontoso.com*.
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aadds.contoso.com*.
 1. Select **Synchronization** from the menu on the left-hand side.
 1. For *Synchronization scope*, select **All** or **Cloud Only**.
 1. To filter synchronization for selected groups, click **Show selected groups**, choose whether to synchronize cloud-only groups, on-premises groups, or both. For example, the following screenshot shows how to synchronize only three groups that were created in Microsoft Entra ID. Only users who belong to those groups will have their accounts synchronized to Domain Services.  
@@ -70,7 +70,7 @@ Changing the scope of synchronization causes the managed domain to resynchronize
 
 To modify the list of groups whose users should be synchronized to the managed domain, complete the following steps:
 
-1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aaddscontoso.com*.
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aadds.contoso.com*.
 1. Select **Synchronization** from the menu on the left-hand side.
 1. To add a group, choose **+ Add groups** at the top, then choose the groups to add.
 1. To remove a group from the synchronization scope, select it from the list of currently synchronized groups and choose **Remove groups**.
@@ -82,7 +82,7 @@ Changing the scope of synchronization causes the managed domain to resynchronize
 
 To disable group-based scoped synchronization for a managed domain, complete the following steps:
 
-1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aaddscontoso.com*.
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com), search for and select **Microsoft Entra Domain Services**. Choose your managed domain, such as *aadds.contoso.com*.
 1. Select **Synchronization** from the menu on the left-hand side.
 1. Clear the check box for **Show selected groups**, and click **Save synchronization scope**.
 
